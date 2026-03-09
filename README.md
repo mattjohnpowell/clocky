@@ -1,95 +1,26 @@
-# Clocky - A Kid-Friendly Sleep Training Clock for Guition JC8048W550C_I
+# Clocky — A Kid-Friendly Sleep Training Clock
 
-A fun ESP32-based sleep training clock that helps children know when it's time to wake up or go to bed using friendly Spider-Man animations and color changes. Built for the Guition JC8048W550C_I ESP32-S3 5-inch IPS display board.
+Clocky is a sleep training clock designed to help young children understand when it is time to wake up and when it is time to go to bed. It runs on a Guition JC8048W550C_I ESP32-S3 5-inch IPS touchscreen display and uses friendly Spider-Man characters and color-changing backgrounds to communicate the time of day in a way that is immediately understandable to children who cannot yet read a clock.
 
-## Features
+## What the app does
 
-- Digital clock display with date
-- Customizable wake-up and bedtime settings
-- Friendly Spider-Man animations for bedtime notifications
-- Dynamic background colors (bright for day, dark for night)
-- Easy-to-use touch interface for time adjustments
-- WiFi-enabled for automatic time synchronization
-- Clean, modern UI with smooth transitions
+### Clock and date display
+The main screen shows the current time in large, easy-to-read digits alongside the full date. The time is kept accurate automatically by connecting to the internet and synchronizing with an NTP time server.
 
-## Hardware Requirements
+### Day and night backgrounds
+The background color of the screen changes to reflect whether it is currently day or night according to the child's personalized schedule:
+- **Daytime** — a warm orange-to-yellow gradient signals that it is okay to be awake.
+- **Night-time** — a calm light-blue-to-dark-blue gradient signals that it is time to sleep.
 
-- Guition JC8048W550C_I ESP32-S3 5-inch IPS display board (16M FLASH, 8M PSRAM)
-- USB-C cable for programming
-- 5V power supply
+### Spider-Man bedtime animations
+As bedtime approaches, a friendly Spider-Man character fades onto the screen to give the child advance notice that sleep is coming soon. Once bedtime has arrived, a sleeping Spider-Man image is shown so the child knows it is time to close their eyes.
 
-## Software Requirements
+### Customizable wake-up and bedtime
+Parents can set personalized wake-up and bedtime values directly on the device using on-screen **+** and **−** buttons. Times adjust in 30-minute steps and are shown clearly on the main screen at all times.
 
-- PlatformIO IDE
-- Visual Studio Code
-- ESP32 Arduino framework
-- LVGL library (included)
+### Parental controls
+A PIN-protected settings area prevents children from changing the schedule themselves. After a short period of inactivity the settings lock automatically. Repeated wrong PIN entries trigger a temporary lockout to discourage guessing.
 
-## Installation
+## Who it is for
 
-1. Clone the repository with submodules:
-   ```bash
-   git clone --recurse-submodules https://github.com/mattjohnpowell/clocky.git
-   ```
-
-2. Copy `config.h.local` to `config.h` and update with your settings:
-   ```cpp
-   #define WIFI_SSID "your_wifi_ssid"
-   #define WIFI_PASSWORD "your_wifi_password"
-   #define SELECTED_TIMEZONE "your_timezone"  // e.g., "EST5EDT,M3.2.0,M11.1.0"
-   ```
-
-3. Open the project in PlatformIO IDE (Visual Studio Code)
-
-4. Install required board definition:
-   - Copy the board file `boards/esp32-8048S050C.json` to your PlatformIO boards directory
-   - Or add the boards repository to your `platformio.ini`:
-     ```ini
-     [env:esp32-8048S050C]
-     platform = espressif32
-     board = esp32-8048S050C
-     framework = arduino
-     ```
-
-5. Build and upload the project to your device
-
-## Usage
-
-1. Power on the device - it will automatically connect to WiFi and sync time
-2. Use the + and - buttons to adjust wake-up and sleep times
-3. The display will show:
-   - Current time in large digits
-   - Current date
-   - Wake-up time setting
-   - Bedtime setting
-   - Spider-Man animations near bedtime
-   - Day/night appropriate background colors
-
-## Customization
-
-The clock face and animations can be customized by modifying:
-- UI layout in `ui_scrMain.c`
-- Background colors in `style_bg_day` and `style_bg_night`
-- Animation timing in `BEDTIME_WINDOW_HOURS`
-- Spider-Man images (replace `spiderman.c` and `spidermansleep.c`)
-
-## Troubleshooting
-
-- If WiFi doesn't connect, check your credentials in `config.h`
-- If time doesn't sync, verify your timezone setting
-- For display issues, ensure correct board selection in PlatformIO
-- USB CDC may require a 5-second delay on some systems
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-[Your chosen license]
-
-## Acknowledgments
-
-- Based on the esp32-smartdisplay library
-- Uses LVGL for the user interface
-- Spider-Man images and references are property of their respective owners
+Clocky is aimed at parents of toddlers and young children who need a simple, visual cue to know whether they should get out of bed or stay in their room. The large screen, bold colors, and familiar animated character make it easy for children to understand without any adult explanation.
